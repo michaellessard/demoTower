@@ -1,0 +1,14 @@
+---
+- name: Create a database 
+  hosts: all
+  become: yes
+  vars: 
+    db_host: localhost
+    db_user: SA
+    db_password: 1qaz2wsX
+  tasks:
+    - name: Create the database "{{ db_name }}"        
+      include_role:
+          name: michaellessard.mssql
+          tasks_from: new_db
+
