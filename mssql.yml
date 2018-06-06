@@ -1,7 +1,7 @@
 ---
 
 - name: Take user directory information
-  hosts: db
+  hosts: all
   tasks: 
     - name: set userdirectory fact 
       set_fact: 
