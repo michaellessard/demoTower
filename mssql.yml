@@ -9,7 +9,7 @@
     - debug: var=userdirectory 
   
 - name: install MsSQL on RHEL 
-  hosts: db 
+  hosts: all 
   become: yes
   vars: 
     db_name: ansibleDemo2
