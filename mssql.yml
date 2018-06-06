@@ -1,0 +1,28 @@
+---
+
+- name: Take user directory information
+  hosts: db
+  tasks: 
+    - name: set userdirectory fact 
+      set_fact: 
+        userdirectory: "{{ ansible_user_dir}}"
+    - debug: var=userdirectory 
+  
+- name: install MsSQL on RHEL 
+  hosts: db 
+  become: yes
+  vars: 
+    db_name: ansibleDemo2
+    db_host: localhost
+    db_user: SA
+    db_password: 1qaz2wsX
+  roles:
+    -  { role: michaellessard.mssql }
+  tasks: 
+    - name: Pause for 15 seconds for DB connection to come up 
+      pause: 
+        seconds: 15
+    - name: Create new db
+      include_role:
+          name: michaellessard.mssql
+          tasks_from: new_db    
